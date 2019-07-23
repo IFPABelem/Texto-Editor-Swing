@@ -31,57 +31,68 @@ public class Window extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        Action copyAction = new DefaultEditorKit.CopyAction();
         jMenuItem1 = new javax.swing.JMenuItem();
+        Action pasteAction = new DefaultEditorKit.PasteAction();
         jMenuItem2 = new javax.swing.JMenuItem();
+        Action cutAction = new DefaultEditorKit.CutAction();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jEditorPane1 = new javax.swing.JEditorPane();
         jMenuItem4 = new javax.swing.JMenuItem( jEditorPane1.getActionMap().get(DefaultEditorKit.selectAllAction) );
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem( jEditorPane1.getActionMap().get(DefaultEditorKit.beginLineAction) );
         jMenuItem6 = new javax.swing.JMenuItem( jEditorPane1.getActionMap().get(DefaultEditorKit.endLineAction) );
+        jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem( jEditorPane1.getActionMap().get(DefaultEditorKit.beginAction) );
         jMenuItem8 = new javax.swing.JMenuItem( jEditorPane1.getActionMap().get(DefaultEditorKit.endAction) );
+        jScrollPane1 = new javax.swing.JScrollPane();
+        /* Corrigindo o Lixo do NetBeans
+        jEditorPane1 = new javax.swing.JEditorPane();
+        */
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
 
-        // Actiions
-        Action copyAction = new DefaultEditorKit.CopyAction();
-        copyAction.putValue(Action.NAME, "Copia");
-
-        Action pasteAction = new DefaultEditorKit.PasteAction();
-        pasteAction.putValue(Action.NAME, "Cola");
-
-        Action cutAction = new DefaultEditorKit.CutAction();
-        cutAction.putValue(Action.NAME, "Corta");
-
-        jMenuItem1.setAction(copyAction); // Copia
-        jMenuItem2.setAction(pasteAction); // Cola
-        jMenuItem3.setAction(cutAction); // Corta
-        jMenuItem4.setText("Seleciona tudo");
-        jMenu3.setText("Ir para");
-            jMenu4.setText("Linha");
-                jMenuItem5.setText("Começo");
-                jMenuItem6.setText("Fim");
-            jMenu5.setText("Texto");
-                jMenuItem7.setText("Começo");
-                jMenuItem8.setText("Fim");
-        
+        jMenuItem1.setAction(copyAction);
+        jMenuItem1.setText("Copia");
         jPopupMenu1.add(jMenuItem1);
+
+        jMenuItem2.setAction(pasteAction);
+        jMenuItem2.setText("Cola");
         jPopupMenu1.add(jMenuItem2);
+
+        jMenuItem3.setAction(cutAction);
+        jMenuItem3.setText("Corta");
         jPopupMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Seleciona tudo");
+        jMenuItem4.setToolTipText("");
         jPopupMenu1.add(jMenuItem4);
 
+        jMenu3.setText("Ir para");
+
+        jMenu4.setText("Linha");
+
+        jMenuItem5.setText("Começo");
         jMenu4.add(jMenuItem5);
+
+        jMenuItem6.setText("Fim");
         jMenu4.add(jMenuItem6);
+
         jMenu3.add(jMenu4);
+
+        jMenu5.setText("Texto");
+
+        jMenuItem7.setText("Começo");
         jMenu5.add(jMenuItem7);
+
+        jMenuItem8.setText("Fim");
         jMenu5.add(jMenuItem8);
+
         jMenu3.add(jMenu5);
+
         jPopupMenu1.add(jMenu3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
