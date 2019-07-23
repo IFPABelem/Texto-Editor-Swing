@@ -5,9 +5,21 @@
  */
 package Game;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import javax.swing.Action;
-import javax.swing.JEditorPane;
 import javax.swing.text.DefaultEditorKit;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileSystemView;
 
 /**
  *
@@ -51,23 +63,24 @@ public class Window extends javax.swing.JFrame {
         /* Corrigindo o Lixo do NetBeans
         jEditorPane1 = new javax.swing.JEditorPane();
         */
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
 
         jMenuItem1.setAction(copyAction);
-        jMenuItem1.setText("Copia");
+        jMenuItem1.setText("Copiar");
         jPopupMenu1.add(jMenuItem1);
 
         jMenuItem2.setAction(pasteAction);
-        jMenuItem2.setText("Cola");
+        jMenuItem2.setText("Colar");
         jPopupMenu1.add(jMenuItem2);
 
         jMenuItem3.setAction(cutAction);
-        jMenuItem3.setText("Corta");
+        jMenuItem3.setText("Recortar");
         jPopupMenu1.add(jMenuItem3);
 
-        jMenuItem4.setText("Seleciona tudo");
+        jMenuItem4.setText("Selecionar tudo");
         jMenuItem4.setToolTipText("");
         jPopupMenu1.add(jMenuItem4);
 
@@ -96,7 +109,8 @@ public class Window extends javax.swing.JFrame {
         jPopupMenu1.add(jMenu3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         jEditorPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -107,13 +121,31 @@ public class Window extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1);
 
-        jMenu1.setText("Abrir Arquivo");
-        jMenuBar1.add(jMenu1);
+        jMenu1.setText("Novo");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(jMenu1);
 
-        jMenu2.setText("Salva Arquivo");
-        jMenuBar1.add(jMenu2);
+        jMenu6.setText("Abrir");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(jMenu6);
 
-        setJMenuBar(jMenuBar1);
+        jMenu7.setText("salvar");
+        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu7MouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(jMenu7);
+
+        setJMenuBar(jMenuBar2);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -122,7 +154,53 @@ public class Window extends javax.swing.JFrame {
         if (evt.isPopupTrigger()) {
             jPopupMenu1.show(this, evt.getX(), evt.getY());
         }
+    }
+
+    static void writeFile(String content, String path, Charset encoding) throws IOException {
+       Files.write(Paths.get(path), content.getBytes(encoding));
+    }
+
+    // https://stackoverflow.com/questions/326390/how-do-i-create-a-java-string-from-the-contents-of-a-file
+    static String readFile(String path, Charset encoding) throws IOException {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, encoding);
     }//GEN-LAST:event_jEditorPane1MousePressed
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+        JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        int res = fileChooser.showOpenDialog(null); 
+        if (res == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            try {
+                String content = readFile(path, StandardCharsets.UTF_8);
+                jEditorPane1.setText(content);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao tenta abrir");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Falha ao tenta abrir");
+        }
+    }//GEN-LAST:event_jMenu6MouseClicked
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        jEditorPane1.setText("");
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+        JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        int res = fileChooser.showOpenDialog(null); 
+        if (res == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            try {
+                String content = jEditorPane1.getText();
+                writeFile(content, path, StandardCharsets.UTF_8);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Uma falha occoreu em seu sistema!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Uma falha occoreu em seu sistema!");
+        }
+    }//GEN-LAST:event_jMenu7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -162,11 +240,12 @@ public class Window extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
