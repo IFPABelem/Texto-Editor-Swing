@@ -122,25 +122,37 @@ public class Window extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
 
         jMenu1.setText("Novo");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+        jMenu1.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenu1MenuSelected(evt);
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
         });
         jMenuBar2.add(jMenu1);
 
         jMenu6.setText("Abrir");
-        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu6MouseClicked(evt);
+        jMenu6.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenu6MenuSelected(evt);
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
         });
         jMenuBar2.add(jMenu6);
 
         jMenu7.setText("salvar");
-        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu7MouseClicked(evt);
+        jMenu7.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenu7MenuSelected(evt);
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
         });
         jMenuBar2.add(jMenu7);
@@ -166,27 +178,11 @@ public class Window extends javax.swing.JFrame {
         return new String(encoded, encoding);
     }//GEN-LAST:event_jEditorPane1MousePressed
 
-    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
-        JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        int res = fileChooser.showOpenDialog(null); 
-        if (res == JFileChooser.APPROVE_OPTION) {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
-            try {
-                String content = readFile(path, StandardCharsets.UTF_8);
-                jEditorPane1.setText(content);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, "Falha ao tenta abrir");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Falha ao tenta abrir");
-        }
-    }//GEN-LAST:event_jMenu6MouseClicked
-
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+    private void jMenu1MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu1MenuSelected
         jEditorPane1.setText("");
-    }//GEN-LAST:event_jMenu1MouseClicked
+    }//GEN-LAST:event_jMenu1MenuSelected
 
-    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+    private void jMenu7MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu7MenuSelected
         JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         int res = fileChooser.showOpenDialog(null); 
         if (res == JFileChooser.APPROVE_OPTION) {
@@ -200,7 +196,23 @@ public class Window extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Uma falha occoreu em seu sistema!");
         }
-    }//GEN-LAST:event_jMenu7MouseClicked
+    }//GEN-LAST:event_jMenu7MenuSelected
+
+    private void jMenu6MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu6MenuSelected
+        JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        int res = fileChooser.showOpenDialog(null); 
+        if (res == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            try {
+                String content = readFile(path, StandardCharsets.UTF_8);
+                jEditorPane1.setText(content);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao tenta abrir");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Falha ao tenta abrir");
+        }
+    }//GEN-LAST:event_jMenu6MenuSelected
 
     /**
      * @param args the command line arguments
