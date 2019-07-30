@@ -112,6 +112,11 @@ public class Window extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
+        jScrollPane1.setForeground(new java.awt.Color(204, 204, 204));
+
+        jEditorPane1.setBackground(new java.awt.Color(51, 63, 70));
+        jEditorPane1.setForeground(new java.awt.Color(255, 255, 255));
+        jEditorPane1.setCaretColor(new java.awt.Color(255, 255, 255));
         jEditorPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jEditorPane1MousePressed(evt);
@@ -121,6 +126,11 @@ public class Window extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1);
 
+        jMenuBar2.setBackground(new java.awt.Color(82, 96, 105));
+        jMenuBar2.setForeground(new java.awt.Color(212, 214, 215));
+        jMenuBar2.setToolTipText("");
+
+        jMenu1.setForeground(new java.awt.Color(212, 214, 215));
         jMenu1.setText("Novo");
         jMenu1.addMenuListener(new javax.swing.event.MenuListener() {
             public void menuSelected(javax.swing.event.MenuEvent evt) {
@@ -133,6 +143,7 @@ public class Window extends javax.swing.JFrame {
         });
         jMenuBar2.add(jMenu1);
 
+        jMenu6.setForeground(new java.awt.Color(212, 214, 215));
         jMenu6.setText("Abrir");
         jMenu6.addMenuListener(new javax.swing.event.MenuListener() {
             public void menuSelected(javax.swing.event.MenuEvent evt) {
@@ -145,6 +156,7 @@ public class Window extends javax.swing.JFrame {
         });
         jMenuBar2.add(jMenu6);
 
+        jMenu7.setForeground(new java.awt.Color(212, 214, 215));
         jMenu7.setText("salvar");
         jMenu7.addMenuListener(new javax.swing.event.MenuListener() {
             public void menuSelected(javax.swing.event.MenuEvent evt) {
