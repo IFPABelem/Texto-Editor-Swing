@@ -109,6 +109,7 @@ public class Window extends javax.swing.JFrame {
         jPopupMenu1.add(jMenu3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Texto Editor Swing");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
@@ -145,7 +146,7 @@ public class Window extends javax.swing.JFrame {
         });
         jMenuBar2.add(jMenu6);
 
-        jMenu7.setText("salvar");
+        jMenu7.setText("Salvar");
         jMenu7.addMenuListener(new javax.swing.event.MenuListener() {
             public void menuSelected(javax.swing.event.MenuEvent evt) {
                 jMenu7MenuSelected(evt);
@@ -190,6 +191,7 @@ public class Window extends javax.swing.JFrame {
             try {
                 String content = jEditorPane1.getText();
                 writeFile(content, path, StandardCharsets.UTF_8);
+                JOptionPane.showMessageDialog(null, "Arquivo salvado!");
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Uma falha occoreu em seu sistema!");
             }
